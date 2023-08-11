@@ -1,18 +1,18 @@
 import React from 'react';
 
 import ReactDOM from 'react-dom/client';
-
-import './normolize.css';
+import { Provider } from 'react-redux';
 
 import App from './app/App';
-import reportWebVitals from './reportWebVitals';
+import { store } from './app/store';
+
+import './styles/index.css';
+import './styles/normalize.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 
 root.render(
-  <React.StrictMode>
+  <Provider store={store}>
     <App />
-  </React.StrictMode>,
+  </Provider>,
 );
-
-reportWebVitals();

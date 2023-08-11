@@ -1,7 +1,13 @@
 import { FC } from 'react';
 
+import { MainPage } from '../pages/MainPage';
+
 export const App: FC = () => {
-  return <div className="App">Hello World</div>;
+  return (
+    <div>
+      <MainPage />
+    </div>
+  );
 };
 
 export default App;
