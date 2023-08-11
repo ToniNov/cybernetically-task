@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
+import { DragDropContext, Droppable, DropResult } from 'react-beautiful-dnd';
+
 import { createHeaderTitleFromData } from '../../helpers/createHeaderTitleFromData';
 import { StockData } from '../../types';
 
@@ -41,16 +43,44 @@ export const Table: FC<PropsType> = ({ stocks }) => {
     setCurrentPortion(stocks.slice(startIndex, endIndex));
   }, [currentPage, stocks, stocksPerPage]);
 
-  const displayStocks = currentPortion?.map((stock) => {
-    return <StockRow stock={stock} key={stock.symbol} />;
-  });
-
   const handlePageClick = (newPage: number): void => {
     setCurrentPage(newPage);
   };
+
   const handleChangeStocksCount = (stocksCount: number): void => {
     setStocksPerPage(stocksCount);
   };
+
+  const onDragEnd = (result: DropResult): void => {
+    const { source, destination } = result;
+
+    if (!destination) {
+      return;
+    }
+
+    if (
+      source.droppableId === destination.droppableId &&
+      source.index === destination.index
+    ) {
+      return;
+    }
+
+    if (currentPortion === null) {
+      return;
+    }
+
+    const updatedStocks = Array.from(currentPortion);
+    const draggedStock = updatedStocks[source.index];
+
+    updatedStocks.splice(source.index, 1);
+    updatedStocks.splice(destination.index, 0, draggedStock);
+
+    setCurrentPortion(updatedStocks);
+  };
+
+  const displayStocks = currentPortion?.map((stock, index) => {
+    return <StockRow stock={stock} index={index} key={stock.symbol} />;
+  });
 
   return (
     <>
@@ -67,7 +97,16 @@ export const Table: FC<PropsType> = ({ stocks }) => {
             ))}
           </tr>
         </thead>
-        <tbody>{displayStocks}</tbody>
+        <DragDropContext onDragEnd={onDragEnd}>
+          <Droppable droppableId="stocks">
+            {(provided) => (
+              <tbody {...provided.droppableProps} ref={provided.innerRef}>
+                {displayStocks}
+                {provided.placeholder}
+              </tbody>
+            )}
+          </Droppable>
+        </DragDropContext>
       </table>
       <Pagination
         totalItems={stocks.length}
