@@ -24,9 +24,7 @@ export const TableHeaderTitle: FC<PropsType> = ({ title, onClick, titleKey }) =>
   return (
     <th
       onClick={clickHandler}
-      className={`md:p-6 p-2 cursor-pointer ${
-        title === 'symbol' ? 'md:w-1/12 w-1/4' : 'w-2/5'
-      }`}
+      className={`md:p-6 p-2 cursor-pointer ${titleKey === 'sector' ? 'w-48' : ''}`}
       scope="col"
     >
       <div className="flex flex-col items-center justify-center ">

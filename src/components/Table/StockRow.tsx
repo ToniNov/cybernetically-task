@@ -25,22 +25,22 @@ export const StockRow: FC<PropsType> = ({ stock }) => {
 
   return (
     <tr>
-      <th className="font-normal md:font-medium p-2 md:p-4 border border-grayExtraLite">
+      <td className="font-normal w-1/13 md:font-medium p-1 md:p-2 border border-grayExtraLite">
         {symbol}
-      </th>
-      <td className="font-normal w-1/3 md:font-medium p-2 md:p-4 border border-grayExtraLite">
+      </td>
+      <td className="font-normal w-2/13 md:font-medium p-1 md:p-2 border border-grayExtraLite">
         {sector}
       </td>
-      <td className="font-normal w-1/3 md:font-medium p-2 md:p-4 border border-grayExtraLite">
+      <td className="font-normal w-1/13 md:font-medium p-2 md:p-4 border border-grayExtraLite">
         {securityType}
       </td>
-      <td className="font-normal w-1/3 md:font-medium p-2 md:p-4 border border-grayExtraLite">
+      <td className="font-normal w-1/13 md:font-medium p-2 md:p-4 border border-grayExtraLite">
         {bidPrice}
       </td>
-      <td className="font-normal w-1/3 md:font-medium p-2 md:p-4 border border-grayExtraLite">
+      <td className="font-normal w-1/13 md:font-medium p-2 md:p-4 border border-grayExtraLite">
         {bidSize}
       </td>
-      <td className="font-normal w-1/3 md:font-medium p-2 md:p-4 border border-grayExtraLite">
+      <td className="font-normal w-1/13 md:font-medium p-2 md:p-4 border border-grayExtraLite">
         {askPrice}
       </td>
       <td className="font-normal w-1/3 md:font-medium p-2 md:p-4 border border-grayExtraLite">
