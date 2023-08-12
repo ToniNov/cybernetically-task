@@ -27,7 +27,6 @@ export const Pagination: React.FC<PropsType> = ({
   const pageNumbers = Array.from({ length: totalPages }, (_, index) => index + 1);
 
   const handlePageChange = (page: number): void => {
-    console.log(page, 'handlePageChange');
     if (page >= 1 && page <= totalPages) {
       onPageChange(page);
     }

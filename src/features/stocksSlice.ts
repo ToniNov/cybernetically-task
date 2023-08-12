@@ -7,11 +7,11 @@ export const fetchStockData = createAsyncThunk<
   StockData[],
   void,
   { rejectValue: string }
->('posts/fetchStockData', async (): Promise<StockData[]> => {
+>('stocks/fetchStockData', async (): Promise<StockData[]> => {
   try {
     return await iexcloudAPI.fetchData();
   } catch (error: any) {
-    throw new Error(`Error fetching posts: ${error.message}`);
+    throw new Error(`Error fetching stock: ${error.message}`);
   }
 });
 
@@ -19,7 +19,7 @@ export interface StocksState {
   stocks: StockData[];
   originalStocks: StockData[];
   status: RequestStatusType;
-  error?: string;
+  error?: any;
 }
 
 const initialState: StocksState = {
@@ -29,7 +29,7 @@ const initialState: StocksState = {
   error: '',
 };
 
-const stocksSlice = createSlice({
+export const stocksSlice = createSlice({
   name: 'stocks',
   initialState,
   reducers: {
@@ -62,7 +62,7 @@ const stocksSlice = createSlice({
       })
       .addCase(fetchStockData.rejected, (state, action) => {
         state.status = 'failed';
-        state.error = action.payload;
+        state.error = action;
       });
   },
 });

@@ -22,7 +22,7 @@ export const PageNumbers: React.FC<PropsType> = ({
       {displayedPages.map((pageNumber) => (
         <li
           key={pageNumber}
-          className={`relative inline-flex items-center px-2 py-2 border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 ${
+          className={`relative inline-flex items-center justify-center px-2 py-2 w-12 border border-gray-300 text-sm font-medium text-gray-500 hover:bg-gray-50 ${
             pageNumber === currentPage ? 'bg-green' : 'bg-white'
           }`}
         >

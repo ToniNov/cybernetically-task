@@ -14,10 +14,10 @@ export const PaginationButton: FC<PropsType> = ({
   children,
 }) => {
   return (
-    <li className={`page-item ${currentPage === disabledParameter ? 'opacity-50' : ''}`}>
+    <li className={`page-item ${currentPage === disabledParameter ? 'opacity-50 ' : ''}`}>
       <button
         type="button"
-        className="relative inline-flex items-center px-2 py-2  border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+        className="relative inline-flex items-center px-2 py-2 border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
         onClick={changePage}
         disabled={currentPage === disabledParameter}
       >
